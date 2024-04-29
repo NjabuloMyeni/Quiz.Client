@@ -121,16 +121,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FinishQuiz.cpp" />
+    <ClCompile Include="Grading.cpp" />
     <ClCompile Include="HomePage.cpp" />
+    <ClCompile Include="QuizInProgress.cpp" />
+    <ClCompile Include="QuizPassed.cpp" />
+    <ClCompile Include="WriteQuiz.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FinishQuiz.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Grading.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="HomePage.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="QuizInProgress.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="QuizPassed.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="WriteQuiz.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FinishQuiz.resx">
+      <DependentUpon>FinishQuiz.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Grading.resx">
+      <DependentUpon>Grading.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HomePage.resx">
       <DependentUpon>HomePage.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuizInProgress.resx">
+      <DependentUpon>QuizInProgress.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuizPassed.resx">
+      <DependentUpon>QuizPassed.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WriteQuiz.resx">
+      <DependentUpon>WriteQuiz.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
