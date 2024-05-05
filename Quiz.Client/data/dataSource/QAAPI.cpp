@@ -35,13 +35,13 @@ public:
     }
 
     // Getter method for accessing the questions vector
-    const vector<QAModel> getQuestionBankOne() {
+    vector<QAModel> getQuestionBankOne() {
         return questionBankOne;
     }
-    const vector<QAModel> getQuestionBankTwo() {
+    vector<QAModel> getQuestionBankTwo() {
         return questionBankTwo;
     }
-    const vector<QAModel> getQuestionBankThree() {
+    vector<QAModel> getQuestionBankThree() {
         return questionBankThree;
     }
     //class Constructor

@@ -2,6 +2,7 @@
 #include<random>;
 #include "../../Models/Models.cpp"
 #include "QAAPI.cpp"
+#include <list>
 
 using namespace std;
 using namespace Models;
@@ -22,10 +23,11 @@ public:
 
 	}
 
-	void compileQuestions(const vector<QAModel>& levelQuestions) {
+	void compileQuestions(vector<QAModel>& levelQuestions) {
 		for (int i = 0; i <= 4; i++) {
 			int index = rand() % levelQuestions.size();
 			sessionQuestions.push_back(levelQuestions[index]);
+			levelQuestions.pop_back();
 		}
 	}
 

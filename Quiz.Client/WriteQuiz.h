@@ -139,7 +139,6 @@ namespace QuizClient {
 			this->Text = L"WriteQuiz";
 			this->ResumeLayout(false);
 			this->PerformLayout();
-
 		}
 #pragma endregion
 		private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -148,8 +147,8 @@ namespace QuizClient {
 	
 		private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 			
-			vector<SessionQuestionsModel> sessionquestions;
-			QuizInprogress quizinprogress(&sessionquestions);
+			vector<SessionQuestionsModel> *sessionquestions{};
+			QuizInprogress quizinprogress(sessionquestions);
 			QuizInProgress^ quizinprogressComp = gcnew QuizInProgress(sessionquestions);
 			quizinprogressComp->Show();
 			this->Hide();
