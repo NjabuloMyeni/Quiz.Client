@@ -150,7 +150,7 @@ namespace QuizClient {
 			
 			vector<SessionQuestionsModel> sessionquestions;
 			QuizInprogress quizinprogress(&sessionquestions);
-			QuizInProgress^ quizinprogressComp = gcnew QuizInProgress(&sessionquestions);
+			QuizInProgress^ quizinprogressComp = gcnew QuizInProgress(sessionquestions);
 			quizinprogressComp->Show();
 			this->Hide();
 		}
