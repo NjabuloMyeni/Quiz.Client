@@ -14,9 +14,12 @@ namespace QuizClient {
 	/// </summary>
 	public ref class QuizInProgress : public System::Windows::Forms::Form
 	{
+		int currentIndex = 0;
+		vector <SessionQuestionsModel>* sessionquestions;
 	public:
-		QuizInProgress(void)
+		QuizInProgress(vector <SessionQuestionsModel>* sessionquestions)
 		{
+			this->sessionquestions = sessionquestions;
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here

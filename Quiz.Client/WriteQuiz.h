@@ -1,4 +1,5 @@
 #pragma once
+#include "QuizInProgress.cpp"
 
 namespace QuizClient {
 
@@ -73,6 +74,7 @@ namespace QuizClient {
 			this->button1->TabIndex = 0;
 			this->button1->Text = L"PLAY QUIZ";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &WriteQuiz::button1_Click);
 			// 
 			// button2
 			// 
@@ -84,6 +86,7 @@ namespace QuizClient {
 			this->button2->TabIndex = 2;
 			this->button2->Text = L"QUIT";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &WriteQuiz::button2_Click);
 			// 
 			// button3
 			// 
@@ -139,5 +142,17 @@ namespace QuizClient {
 
 		}
 #pragma endregion
+		private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+			this->Close();
+		}
+	
+		private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+			
+			vector<SessionQuestionsModel> sessionquestions;
+			QuizInprogress quizinprogress(&sessionquestions);
+			QuizInProgress^ quizinprogressComp = gcnew QuizInProgress(&sessionquestions);
+			quizinprogressComp->Show();
+			this->Hide();
+		}
 	};
 }

@@ -1,4 +1,10 @@
 #pragma once
+#include <msclr\marshal_cppstd.h>;
+#include "WriteQuiz.h"
+#include <iostream>;
+#include "Models/Models.cpp";
+#include "HomePage.cpp";
+#include "WriteQuiz.cpp"
 
 namespace QuizClient {
 
@@ -8,6 +14,7 @@ namespace QuizClient {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace Models;
 
 	/// <summary>
 	/// Summary for HomePage
@@ -84,6 +91,7 @@ namespace QuizClient {
 			this->button1->TabIndex = 3;
 			this->button1->Text = L"log in";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &HomePage::button1_Click);
 			// 
 			// button2
 			// 
@@ -108,6 +116,7 @@ namespace QuizClient {
 			this->button3->TabIndex = 5;
 			this->button3->Text = L"Sign up";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &HomePage::button3_Click);
 			// 
 			// textBox4
 			// 
@@ -207,9 +216,29 @@ namespace QuizClient {
 
 		}
 #pragma endregion
-	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+private: 
+	System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void HomePage_Load(System::Object^ sender, System::EventArgs^ e) {
+
+	System::Void HomePage_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
+	
+	System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		UserAuthRequest userauthrequest;
+		bool authMissionStatus = false;
+		
+		userauthrequest.UserName = msclr::interop::marshal_as<std::string>(textBox1->Text);
+		userauthrequest.Password = msclr::interop::marshal_as<std::string>(textBox4->Text);
+		Homepage homepage(&userauthrequest, &authMissionStatus);
+		
+		if (authMissionStatus) {
+			WriteQuiz^ writequiz = gcnew WriteQuiz();
+			writequiz->Show();
+			this->Hide();
+		}
+	};
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+
 	}
 };
 }

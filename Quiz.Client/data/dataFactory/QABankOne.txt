@@ -1,0 +1,138 @@
+Which of the following is not a valid identifier name in Python? ~ ~Correct5Total;_Radius;pie;While
+@
+Which one of the following options is a Temporary memory? ~ ~Control unit;CorrectRAM;Software;Smart card
+@
+What are large commercial computers used in banks, hotels, et cetera? ~ ~CorrectMainframes;Smart card;Machines;Software
+@
+What determines the order of execution of the program instructions? ~ ~CorrectControl unit;Program;Dialog;CPU
+@
+What does HTML stand for? ~ ~Hyper Transfer Markup Language;CorrectHyper Text Markup Language;Hyperlink and Text Markup Language;High-level Text Markup Language
+@
+Which programming language is often used for data analysis and scientific computing? ~ ~Java;CorrectPython;C++;Ruby
+@
+Which of the following is used for version control? ~ ~CorrectGit;FTP;SSH;SMTP
+@
+What is the binary equivalent of the decimal number 10? ~ ~1000;Correct1010;1100;1111
+@
+Which of the following is used for real-time communication over the Internet? ~ ~FTP;SMTP;CorrectWebSocket;Telnet
+@
+What is the main purpose of an operating system? ~ ~CorrectManage hardware resources;Create web pages;Compile code;Design databases
+@
+Which of the following is used for creating dynamic web pages? ~ ~HTML;CSS;CorrectJavaScript;XML
+@
+Which of the following is an example of a loop in programming? ~ ~If statement;CorrectFor loop;Function;Class
+@
+What is the primary purpose of CSS in web development? ~ ~Handling server requests;Creating interactive elements;CorrectStyling web pages;Manipulating databases
+@
+Which of the following is not a primary color model used in digital imaging? ~ ~RGB;CMYK;HSV;CorrectYUV
+@
+Which of the following is a fundamental unit of digital information? ~ ~CorrectBit;Byte;Megabyte;Kilobyte
+@
+Which programming paradigm emphasizes the use of functions? ~ ~Object-oriented programming;Procedural programming;CorrectFunctional programming;Logical programming
+@
+Which of the following is a popular NoSQL database? ~ ~MySQL;PostgreSQL;CorrectMongoDB;SQLite
+@
+What does HTTP stand for? ~ ~CorrectHyper Text Transfer Protocol;Hyper Transfer Text Protocol;High-level Transfer Protocol;Hyperlink Transfer Protocol
+@
+What will be the output of the following Python code? ~
+def remove_duplicates(lst):
+    return list(set(lst))
+    print(remove_duplicates([1, 2, 3, 3, 4, 5, 5]))~[1, 2, 3, 3, 4, 5, 5];Correct[1, 2, 3, 4, 5];[1, 2, 3, 4, 5, 5];[1, 2, 3, 4, 5, 5, 5]
+@
+What will be the output of the following Python code? ~ 
+def fibonacci(n):
+    fib_series = [0, 1]
+    while len(fib_series) < n:
+        fib_series.append(fib_series[-1] + fib_series[-2])
+    return fib_series
+print(fibonacci(5))~[0, 1, 1, 2, 3];Correct[0, 1, 1, 2, 3, 5];[0, 1, 1, 2, 3, 5, 8];[1, 1, 2, 3, 5]
+@
+Implement a C++ function to check if a number is a prime number? ~ 
+#include <iostream>
+#include <cmath>
+
+bool is_prime(int n) {
+    if (n <= 1) {
+        return false;
+    }
+    for (int i = 2; i <= sqrt(n); ++i) {
+        if (n % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+int main() {
+    std::cout << std::boolalpha << is_prime(17) << std::endl;
+    return 0;
+}~CorrectTrue;False;None;Error
+@
+What is the output of the code below? ~ 
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}~hello, world!;CorrectHello, World!;Hello World!;Hello, World
+@
+What is the error in the code below? ~ 
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!")
+    }
+}~Incorrect spelling;Missing a curly bracket;CorrectMissing semicolon;There is no error
+@
+What language will this code run succefully without any compilation errors? ~
+#include <iostream>
+
+int main() {
+    int num1, num2;
+
+    std::cout << "Enter the first number: ";
+    std::cin >> num1;
+
+    std::cout << "Enter the second number: ";
+    std::cin >> num2;
+
+    int sum = num1 + num2;
+
+    std::cout << "The sum of " << num1 << " and " << num2 << " is: " << sum << std::endl;
+    return 0;
+}~Java;Python;C;CorrectC++
+@
+What calculation is the following code perfoming? ~ 
+#include <iostream>
+int main() {
+    int num1, num2;
+    std::cout << "Enter the first number: ";
+    std::cin >> num1;
+ 
+    std::cout << "Enter the second number: ";
+    std::cin >> num2;
+ 
+    int answer = num1 + num2;
+
+    std::cout << "The answer of " << num1 << " and " << num2 << " is: " << answer << std::endl;
+    return 0;
+}~Subtraction;Multiplication;Division;CorrectNone of the above
+@
+Which data structure can be used to perfom the same exact task in code below instead of a vector? ~ 
+#include <iostream>
+#include <vector>
+
+int main() {
+    std::vector<int> myVector;
+
+    myVector.push_back(10);
+    myVector.push_back(20);
+    myVector.push_back(30);
+
+    std::cout << "Printing all Elements :";
+    for (int i = 0; i < myVector.size(); ++i) {
+        std::cout << " " << myVector[i];
+    }
+    std::cout << std::endl;
+
+    return 0;
+}~CorrectArray;LinkedList;Queue;Stack
+@

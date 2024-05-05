@@ -33,6 +33,27 @@
     <ClCompile Include="FinishQuiz.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="data\dataSource\DataLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="data\dataSource\DataSourceHelperFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="data\dataSource\QAAPI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="data\dataSource\UserProfileAPI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Models.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MainGateway.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="data\dataSource\CompileSessionQuestions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HomePage.h">
@@ -53,5 +74,12 @@
     <ClInclude Include="FinishQuiz.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="data\dataFactory\AdminProfiles.txt" />
+    <Text Include="data\dataFactory\QABankOne.txt" />
+    <Text Include="data\dataFactory\QABankThree.txt" />
+    <Text Include="data\dataFactory\QABankTwo.txt" />
+    <Text Include="data\dataFactory\UserProfiles.txt" />
   </ItemGroup>
 </Project>
