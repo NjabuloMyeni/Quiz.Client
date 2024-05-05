@@ -54,6 +54,9 @@
     <ClCompile Include="data\dataSource\CompileSessionQuestions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SignUp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HomePage.h">
@@ -72,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FinishQuiz.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SignUp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

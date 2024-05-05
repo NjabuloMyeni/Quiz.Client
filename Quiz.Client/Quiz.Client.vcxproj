@@ -133,6 +133,7 @@
     <ClCompile Include="QuizInProgress.cpp" />
     <ClCompile Include="QuizPassed.cpp" />
     <ClCompile Include="src\MainGateway.cpp" />
+    <ClCompile Include="SignUp.cpp" />
     <ClCompile Include="WriteQuiz.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +150,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="QuizPassed.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="SignUp.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="WriteQuiz.h">
@@ -170,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="QuizPassed.resx">
       <DependentUpon>QuizPassed.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SignUp.resx">
+      <DependentUpon>SignUp.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WriteQuiz.resx">
       <DependentUpon>WriteQuiz.h</DependentUpon>
