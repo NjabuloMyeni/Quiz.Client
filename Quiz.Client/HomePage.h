@@ -53,6 +53,7 @@ namespace QuizClient {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::Label^ label5;
 	protected:
 
 	private:
@@ -77,6 +78,7 @@ namespace QuizClient {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// button1
@@ -85,7 +87,7 @@ namespace QuizClient {
 			this->button1->Font = (gcnew System::Drawing::Font(L"Impact", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button1->ForeColor = System::Drawing::SystemColors::ControlDarkDark;
-			this->button1->Location = System::Drawing::Point(216, 259);
+			this->button1->Location = System::Drawing::Point(216, 282);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(67, 27);
 			this->button1->TabIndex = 3;
@@ -104,8 +106,6 @@ namespace QuizClient {
 			this->button3->Size = System::Drawing::Size(75, 29);
 			this->button3->TabIndex = 5;
 			this->button3->Text = L"Sign up";
-			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &HomePage::button3_Click);
 			this->button3->UseVisualStyleBackColor = false;
 			// 
 			// textBox4
@@ -115,6 +115,7 @@ namespace QuizClient {
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(288, 31);
 			this->textBox4->TabIndex = 6;
+			this->textBox4->TextChanged += gcnew System::EventHandler(this, &HomePage::textBox4_TextChanged);
 			// 
 			// label1
 			// 
@@ -137,7 +138,7 @@ namespace QuizClient {
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(288, 31);
 			this->textBox1->TabIndex = 8;
-			this->textBox1->TextChanged += gcnew System::EventHandler(this, &HomePage::textBox1_TextChanged_1);
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &HomePage::textBox1_TextChanged);
 			// 
 			// label2
 			// 
@@ -181,6 +182,19 @@ namespace QuizClient {
 			this->label4->TabIndex = 11;
 			this->label4->Text = L"Password";
 			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
+			this->label5->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label5->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->label5->Location = System::Drawing::Point(146, 256);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(231, 19);
+			this->label5->TabIndex = 12;
+			this->label5->Text = L"incorrect Username or Password";
+			// 
 			// HomePage
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(10, 23);
@@ -188,6 +202,7 @@ namespace QuizClient {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(621, 460);
+			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
@@ -208,31 +223,34 @@ namespace QuizClient {
 
 		}
 #pragma endregion
-private: 
-	System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	}
 
-	System::Void HomePage_Load(System::Object^ sender, System::EventArgs^ e) {
-	}
-	
-	System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		UserAuthRequest userauthrequest;
-		bool authMissionStatus = false;
-		
-		userauthrequest.UserName = msclr::interop::marshal_as<std::string>(textBox1->Text);
-		userauthrequest.Password = msclr::interop::marshal_as<std::string>(textBox4->Text);
-		Homepage homepage(&userauthrequest, &authMissionStatus);
-		
-		if (authMissionStatus) {
-			WriteQuiz^ writequiz = gcnew WriteQuiz();
-			writequiz->Show();
-			this->Hide();
+		System::Void HomePage_Load(System::Object^ sender, System::EventArgs^ e) {
 		}
-	};
-	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	
+		System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+			UserAuthRequest userauthrequest;
+			bool authMissionStatus = false;
+		
+			userauthrequest.UserName = msclr::interop::marshal_as<std::string>(textBox1->Text);
+			userauthrequest.Password = msclr::interop::marshal_as<std::string>(textBox4->Text);
+			Homepage homepage(&userauthrequest, &authMissionStatus);
+		
+			if (authMissionStatus) {
+				WriteQuiz^ writequiz = gcnew WriteQuiz();
+				writequiz->Show();
+				this->Hide();
+			}
+			else {
+				this->label5->Show();
+			}
 
-	}
-private: System::Void textBox1_TextChanged_1(System::Object^ sender, System::EventArgs^ e) {
-}
+		};
+	
+		private: System::Void textBox4_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+			this->label5->Hide();
+		}
+		private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+			this->label5->Hide();
+		}
 };
 }

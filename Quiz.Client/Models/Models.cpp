@@ -17,7 +17,6 @@ namespace Models {
 	struct  UserProfileModel
 	{
 		string UserType;
-		int Uid;
 		string Name;
 		string Surname;
 		string Passward;

@@ -46,13 +46,15 @@ namespace QuizClient {
 	protected:
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Label^ label1 ;;
+	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::CheckBox^ checkBox1;
 	private: System::Windows::Forms::CheckBox^ checkBox2;
 	private: System::Windows::Forms::CheckBox^ checkBox3;
 	private: System::Windows::Forms::CheckBox^ checkBox4;
-	private: vector<SessionQuestionsModel> *sessionquestionspointer;
+	private: const vector<SessionQuestionsModel> *sessionquestionspointer;
 	private: int currentIndex = 0;
-	
+	private: System::String^ question;
+	private: System::String^ codequestion;
 
 	private:
 		/// <summary>
@@ -70,12 +72,13 @@ namespace QuizClient {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(QuizInProgress::typeid));
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton3 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton4 = (gcnew System::Windows::Forms::RadioButton());
-			this->Question = (gcnew System::Windows::Forms::Label());
+			//this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
+			//this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
+			//this->radioButton3 = (gcnew System::Windows::Forms::RadioButton());
+			//this->radioButton4 = (gcnew System::Windows::Forms::RadioButton());
+			//this->Question = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
 			this->checkBox2 = (gcnew System::Windows::Forms::CheckBox());
 			this->checkBox3 = (gcnew System::Windows::Forms::CheckBox());
@@ -106,7 +109,7 @@ namespace QuizClient {
 			this->button2->Text = L"Back";
 			this->button2->UseVisualStyleBackColor = true;
 			// 
-			// radioButton3
+			// label1
 			// 
 			this->label1->AutoSize = true;
 			this->label1->Location = System::Drawing::Point(193, 94);
@@ -115,7 +118,16 @@ namespace QuizClient {
 			this->label1->TabIndex = 2;
 			this->label1->Text = L"uifa";
 			// 
-			// radioButton4
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(193, 120);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(35, 13);
+			this->label2->TabIndex = 2;
+			this->label2->Text = L"uifa";
+			// 
+			// checkBox1
 			// 
 			this->checkBox1->AutoSize = true;
 			this->checkBox1->Location = System::Drawing::Point(185, 287);
@@ -125,7 +137,7 @@ namespace QuizClient {
 			this->checkBox1->Text = L"checkBox1";
 			this->checkBox1->UseVisualStyleBackColor = true;
 			// 
-			// Question
+			// checkBox2
 			// 
 			this->checkBox2->AutoSize = true;
 			this->checkBox2->Location = System::Drawing::Point(185, 310);
@@ -135,7 +147,7 @@ namespace QuizClient {
 			this->checkBox2->Text = L"checkBox2";
 			this->checkBox2->UseVisualStyleBackColor = true;
 			// 
-			// label1
+			// checkBox3
 			// 
 			this->checkBox3->AutoSize = true;
 			this->checkBox3->Location = System::Drawing::Point(185, 333);
@@ -145,7 +157,7 @@ namespace QuizClient {
 			this->checkBox3->Text = L"checkBox3";
 			this->checkBox3->UseVisualStyleBackColor = true;
 			// 
-			// label2
+			// checkBox4
 			// 
 			this->checkBox4->AutoSize = true;
 			this->checkBox4->Location = System::Drawing::Point(185, 356);
