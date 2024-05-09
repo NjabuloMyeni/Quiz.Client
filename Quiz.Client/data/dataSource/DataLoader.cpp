@@ -19,7 +19,7 @@ class DataLoader {
 private:
 
     template<typename Model>
-    vector<Model> dataContentReader(string filename, string level = "") {
+    vector<Model> dataContentReader(string filename, string questionreq = "") {
 
         vector<Model> contentLoad;
         string line;
@@ -33,7 +33,7 @@ private:
         }
 
         char delim = '@';
-        if (level.empty()) {
+        if (questionreq.empty()) {
             delim = '|';
         }
 
@@ -55,11 +55,11 @@ private:
         QAAPI qaAPI;
 
         fileName = "QABankOne.txt";
-        qaAPI.setQuestionBankOne(dataContentReader<QAModel>(path + fileName, "level 1"));
+        qaAPI.setQuestionBankOne(dataContentReader<QAModel>(path + fileName, "questionreq"));
         fileName = "QABankTwo.txt";
-        qaAPI.setQuestionBankTwo(dataContentReader<QAModel>(path + fileName, "level 2"));
+        qaAPI.setQuestionBankTwo(dataContentReader<QAModel>(path + fileName, "questionreq"));
         fileName = "QABankThree.txt";
-        qaAPI.setQuestionBankThree(dataContentReader<QAModel>(path + fileName, "level 3"));
+        qaAPI.setQuestionBankThree(dataContentReader<QAModel>(path + fileName, "questionreq"));
         return qaAPI;
     }
 

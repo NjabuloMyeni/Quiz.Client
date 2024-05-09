@@ -28,11 +28,4 @@ namespace Models {
 		string UserName;
 		string Password;
 	};
-
-	struct SessionQuestionsModel {
-
-		string userAnswer;
-		time_t timer;
-		QAModel questionModel;
-	};
 };

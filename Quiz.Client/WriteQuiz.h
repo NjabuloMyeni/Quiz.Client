@@ -1,5 +1,6 @@
 #pragma once
 #include "QuizInProgress.cpp"
+#include "Models/Models.cpp"
 
 namespace QuizClient {
 
@@ -9,6 +10,7 @@ namespace QuizClient {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace Models;
 
 	/// <summary>
 	/// Summary for WriteQuiz
@@ -147,9 +149,9 @@ namespace QuizClient {
 	
 		private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 			
-			vector<SessionQuestionsModel> *sessionquestions{};
-			QuizInprogress quizinprogress(sessionquestions);
-			QuizInProgress^ quizinprogressComp = gcnew QuizInProgress(sessionquestions);
+			cliext::vector<DisplaySessionQuestionModel^>^ displaysessionquestions = gcnew cliext::vector<DisplaySessionQuestionModel^>();
+			QuizInprogress quizinprogress(displaysessionquestions);
+			QuizInProgress^ quizinprogressComp = gcnew QuizInProgress(displaysessionquestions);
 			quizinprogressComp->Show();
 			this->Hide();
 		}

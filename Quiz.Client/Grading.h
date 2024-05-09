@@ -15,8 +15,9 @@ namespace QuizClient {
 	public ref class Grading : public System::Windows::Forms::Form
 	{
 	public:
-		Grading(void)
+		Grading(String^ score)
 		{
+			this->usergrade = score;
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -40,6 +41,7 @@ namespace QuizClient {
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ textBox1;
+	private: String^ usergrade;
 
 	private:
 		/// <summary>
@@ -114,6 +116,7 @@ namespace QuizClient {
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(100, 20);
 			this->textBox1->TabIndex = 4;
+			this->textBox1->Text = usergrade;
 			// 
 			// Grading
 			// 
@@ -134,5 +137,5 @@ namespace QuizClient {
 
 		}
 #pragma endregion
-	};
+};
 }

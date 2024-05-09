@@ -129,6 +129,7 @@
     <ClCompile Include="FinishQuiz.cpp" />
     <ClCompile Include="Grading.cpp" />
     <ClCompile Include="HomePage.cpp" />
+    <ClCompile Include="Models\HelperModel.cpp" />
     <ClCompile Include="Models\Models.cpp" />
     <ClCompile Include="QuizInProgress.cpp" />
     <ClCompile Include="QuizPassed.cpp" />
