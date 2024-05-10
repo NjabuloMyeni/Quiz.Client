@@ -1,4 +1,7 @@
 #pragma once
+#include <cliext/vector>
+#include "FinishQuiz.h"
+#include "Models/HelperModel.cpp"
 
 namespace QuizClient {
 
@@ -15,9 +18,9 @@ namespace QuizClient {
 	public ref class Grading : public System::Windows::Forms::Form
 	{
 	public:
-		Grading(String^ score)
+		Grading(cliext::vector<DisplaySessionQuestionModel^>^ displaysessionquestionmodel,String^ score)
 		{
-			this->usergrade = score;
+			this->displaysessionquestionmodelpointer = displaysessionquestionmodel;
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -41,8 +44,7 @@ namespace QuizClient {
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ textBox1;
-	private: String^ usergrade;
-
+		   cliext::vector<DisplaySessionQuestionModel^>^ displaysessionquestionmodelpointer;
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -95,8 +97,9 @@ namespace QuizClient {
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(93, 24);
 			this->button2->TabIndex = 2;
-			this->button2->Text = L"RESTART";
+			this->button2->Text = L"Review";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &Grading::button2_Click);
 			// 
 			// label2
 			// 
@@ -116,7 +119,6 @@ namespace QuizClient {
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(100, 20);
 			this->textBox1->TabIndex = 4;
-			this->textBox1->Text = usergrade;
 			// 
 			// Grading
 			// 
@@ -137,5 +139,21 @@ namespace QuizClient {
 
 		}
 #pragma endregion
+		private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			String^ review;
+			for (int i = 0; i < this->displaysessionquestionmodelpointer->size(); i++) {
+
+				if ( !this->displaysessionquestionmodelpointer->at(i)->getUserAnswer()->Empty ) {
+
+					review->Concat(this->displaysessionquestionmodelpointer->at(i)->getQuestion() + "\n");
+					review->Concat(this->displaysessionquestionmodelpointer->at(i)->getCodeQuestion() + "\n");
+					review->Concat(this->displaysessionquestionmodelpointer->at(i)->getOptions().ToString() + "\n");
+				}
+			}
+			FinishQuiz^ finishQuiz = gcnew FinishQuiz(review);
+			finishQuiz->Show();
+			this->Hide();
+		}
 };
 }

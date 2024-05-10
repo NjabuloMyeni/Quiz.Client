@@ -15,8 +15,9 @@ namespace QuizClient {
 	public ref class FinishQuiz : public System::Windows::Forms::Form
 	{
 	public:
-		FinishQuiz(void)
+		FinishQuiz(String^ review)
 		{
+			this->reviewScore =  review;
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -38,8 +39,9 @@ namespace QuizClient {
 	protected:
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Timer^ timer1;
+	private: System::Windows::Forms::ListBox^ listBox1;
 	private: System::ComponentModel::IContainer^ components;
-
+	private: String^ reviewScore;
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -58,7 +60,9 @@ namespace QuizClient {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
 			this->SuspendLayout();
+			reviewScore = gcnew String(reviewScore);
 			// 
 			// button1
 			// 
@@ -85,6 +89,16 @@ namespace QuizClient {
 			this->button2->Text = L"Finish";
 			this->button2->UseVisualStyleBackColor = true;
 			// 
+			// listBox1
+			// 
+			this->listBox1->FormattingEnabled = true;
+			this->listBox1->Location = System::Drawing::Point(153, 90);
+			this->listBox1->Name = L"listBox1";
+			this->listBox1->Size = System::Drawing::Size(422, 251);
+			this->listBox1->TabIndex = 2;
+			this->listBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &FinishQuiz::listBox1_SelectedIndexChanged);
+			this->listBox1->Text = reviewScore;
+			// 
 			// FinishQuiz
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -92,6 +106,7 @@ namespace QuizClient {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(664, 414);
+			this->Controls->Add(this->listBox1);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Name = L"FinishQuiz";
@@ -102,5 +117,7 @@ namespace QuizClient {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	};
+	private: System::Void listBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }

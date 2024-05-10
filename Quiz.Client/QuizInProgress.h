@@ -248,6 +248,8 @@ namespace QuizClient {
 		}
 
 		private:void OptionWork() {
+			radioButton3->Hide();
+			radioButton4->Hide();
 
 			for (int i = 0; i < this->displaysessionquestionspointer->at(currentIndex)->getOptions().size(); i++) {
 
@@ -260,22 +262,42 @@ namespace QuizClient {
 				OperatorOverload op(msclr::interop::marshal_as<std::string>(option));
 				if (i == 0) {
 					this->radioButton1->Text = option;
-					op == msclr::interop::marshal_as<std::string>(this->displaysessionquestionspointer->at(i)->getUserAnswer()) ? radioButton1->Checked = true : radioButton1->Checked = false;
+					if (op == msclr::interop::marshal_as<std::string>(this->displaysessionquestionspointer->at(i)->getUserAnswer()) ){
+						radioButton1->Checked = true;
+					}
+					else {
+						radioButton1->Checked = false;
+					}
 					this->radioButton1->Show();
 				}
 				else if (i == 1) {
 					this->radioButton2->Text = option;
-					op == msclr::interop::marshal_as<std::string>(this->displaysessionquestionspointer->at(i)->getUserAnswer()) ? radioButton2->Checked = true : radioButton2->Checked = false;
+					if (op == msclr::interop::marshal_as<std::string>(this->displaysessionquestionspointer->at(i)->getUserAnswer()) ){
+						radioButton2->Checked = true;
+					}
+					else {
+						radioButton2->Checked = false;
+					}
 					this->radioButton2->Show();
 				}
 				else if (i == 2) {
 					this->radioButton3->Text = option;
-					op == msclr::interop::marshal_as<std::string>(this->displaysessionquestionspointer->at(i)->getUserAnswer()) ? radioButton3->Checked = true : radioButton3->Checked = false;
+					if (op == msclr::interop::marshal_as<std::string>(this->displaysessionquestionspointer->at(i)->getUserAnswer()) ){
+						radioButton3->Checked = true;
+					}
+					else {
+						radioButton3->Checked = false;
+					}
 					this->radioButton3->Show();
 				}
 				else {
 					this->radioButton4->Text = option;
-					op == msclr::interop::marshal_as<std::string>(this->displaysessionquestionspointer->at(i)->getUserAnswer()) ? radioButton4->Checked = true : radioButton4->Checked = false;
+					if (op == msclr::interop::marshal_as<std::string>(this->displaysessionquestionspointer->at(i)->getUserAnswer()) ){
+						radioButton4->Checked = true;
+					}
+					else {
+						radioButton4->Checked = false;
+					}
 					this->radioButton4->Show();
 				}
 			}
@@ -329,7 +351,7 @@ namespace QuizClient {
 			}
 
 			String^ usergrade = score + "/" + this->displaysessionquestionspointer->size();
-			Grading^ gradeComp = gcnew Grading(usergrade);
+			Grading^ gradeComp = gcnew Grading(this->displaysessionquestionspointer, usergrade);
 			gradeComp->Show();
 			this->Hide();
 		}

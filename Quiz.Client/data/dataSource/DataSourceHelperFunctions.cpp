@@ -14,7 +14,7 @@ namespace HelperFuctions {
 			vector<string>splitedString;
 			string temp;
 			for (int i = 0; i < line.length(); i++) {
-				if (line[i] == delimeter || line.length() - i == 1) {
+				if ( line[i] == delimeter ) {
 					splitedString.push_back(temp);
 					temp = "";
 				}
@@ -22,6 +22,7 @@ namespace HelperFuctions {
 					temp += line[i];
 				}
 			}
+			splitedString.push_back(temp);
 			return splitedString;
 		}
 
