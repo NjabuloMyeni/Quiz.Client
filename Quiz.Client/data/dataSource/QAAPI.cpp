@@ -1,49 +1,51 @@
 #include <string>;
 #include <vector>;
+#include <cliext/vector>;
 #include <iostream>;
-#include "..\..\Models\Models.cpp";
+#include "..\..\Models\HelperModel.cpp";
 #pragma once
 
 using namespace std;
-using namespace Models;
+using namespace HelperModels;
 
-class QAAPI
+ref class QAAPI
 {
 
 private:
     //Dynamic Question Bank, to allow all question in the backstorage to be loaded into the respective question bank levels
-    vector<QAModel> questionBankOne;
-	vector<QAModel> questionBankTwo;
-	vector<QAModel> questionBankThree;
+    cliext::vector<QAModel^> questionBankOne;
+    cliext::vector<QAModel^> questionBankTwo;
+    cliext::vector<QAModel^> questionBankThree;
 
 public:
     // Setter method for loading the question vector
-    void setQuestionBankOne(vector<QAModel> questionBankOne) {
-        if (this->questionBankOne.size()==0) {
-            this->questionBankOne = questionBankOne;
+    void setQuestionBankOne(cliext::vector<QAModel^> questionBankOne) {
+        for (int i = 0; i < questionBankOne.size(); i++ ) {
+            this->questionBankOne.push_back(questionBankOne.at(i));
         }
     }
-    void setQuestionBankTwo(vector<QAModel> questionBankTwo) {
-        if (this->questionBankTwo.size() == 0) {
-            this->questionBankTwo = questionBankTwo;
+    void setQuestionBankTwo(cliext::vector<QAModel^> questionBankTwo) {
+        for (int i = 0; i < questionBankOne.size(); i++) {
+            this->questionBankTwo.push_back(questionBankTwo.at(i));
         }
     }
-    void setQuestionBankThree(vector<QAModel> questionBankThree) {
-        if (this->questionBankThree.size() == 0) {
-            this->questionBankThree = questionBankThree;
+    void setQuestionBankThree(cliext::vector<QAModel^> questionBankThree) {
+        for (int i = 0; i < questionBankOne.size(); i++) {
+            this->questionBankThree.push_back(questionBankThree.at(i));
         }
     }
 
     // Getter method for accessing the questions vector
-    vector<QAModel> getQuestionBankOne() {
+    cliext::vector<QAModel^> getQuestionBankOne() {
         return questionBankOne;
     }
-    vector<QAModel> getQuestionBankTwo() {
+    cliext::vector<QAModel^> getQuestionBankTwo() {
         return questionBankTwo;
     }
-    vector<QAModel> getQuestionBankThree() {
+    cliext::vector<QAModel^> getQuestionBankThree() {
         return questionBankThree;
     }
+
     //class Constructor
     QAAPI() {
 

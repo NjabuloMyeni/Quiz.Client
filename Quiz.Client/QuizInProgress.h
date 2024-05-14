@@ -17,6 +17,7 @@ namespace QuizClient {
 	using namespace System::Drawing;
 	using namespace Models;
 	using namespace HelperFuctions;
+	using namespace HelperModels;
 
 	/// <summary>
 	/// Summary for QuizInProgress

@@ -1,19 +1,18 @@
 #include<vector>;
 #include<random>;
-#include "../../Models/Models.cpp"
+#include "../../Models/helperModel.cpp"
 #include "QAAPI.cpp"
-#include <list>
 
 using namespace std;
-using namespace Models;
+using namespace HelperModels;
 
-class CompileSessionQuestions {
+ref class CompileSessionQuestions {
 private:
-	vector<QAModel> sessionQuestions;
+	cliext::vector<QAModel^> sessionQuestions;
 
 public:
 
-	CompileSessionQuestions(QAAPI* qaAPI) {
+	CompileSessionQuestions(QAAPI^ qaAPI) {
 		int levelNum= 1;
 		string level = "level "+ to_string(levelNum);
 		for (int i = 0; i < 3; i++) {
@@ -36,22 +35,24 @@ public:
 
 	}
 
-	void compileQuestions(vector<QAModel>& levelQuestions, string level) {
-		
+	void compileQuestions(cliext::vector<QAModel^> levelQuestions, string level) {
+		int size = levelQuestions.size()-1;
 		for (int i = 0; i <= 7; i++) {
-
+			
 			std::random_device rd;
 			std::mt19937 gen(rd());
-			std::uniform_int_distribution<> dis(0, levelQuestions.size());
+			std::uniform_int_distribution<> dis(0, size);
 			int index = dis(gen);
-			QAModel qaModel = levelQuestions[index];
-			qaModel.QuestionLevel = level;
+			
+			QAModel^ qaModel = levelQuestions.at(index);
+			qaModel->setQuestionLevel(level);
 			sessionQuestions.push_back(qaModel);
-			levelQuestions.pop_back();
+			levelQuestions.erase(levelQuestions.begin());
+			size--;
 		}
 	}
 
-	vector<QAModel> getSessionQuestions() {
+	cliext::vector<QAModel^> getSessionQuestions() {
 		return sessionQuestions;
 	}
 };

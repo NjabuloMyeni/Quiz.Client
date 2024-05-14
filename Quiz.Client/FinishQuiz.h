@@ -17,7 +17,7 @@ namespace QuizClient {
 	public:
 		FinishQuiz(String^ review)
 		{
-			this->reviewScore =  review;
+			this->reviewScore +=  review;
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -39,9 +39,9 @@ namespace QuizClient {
 	protected:
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Timer^ timer1;
-	private: System::Windows::Forms::ListBox^ listBox1;
+	private: System::Windows::Forms::RichTextBox^ richTextBox1;
 	private: System::ComponentModel::IContainer^ components;
-	private: String^ reviewScore;
+	private: String^ reviewScore = gcnew String("");
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -60,9 +60,8 @@ namespace QuizClient {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
-			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
+			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
 			this->SuspendLayout();
-			reviewScore = gcnew String(reviewScore);
 			// 
 			// button1
 			// 
@@ -89,15 +88,13 @@ namespace QuizClient {
 			this->button2->Text = L"Finish";
 			this->button2->UseVisualStyleBackColor = true;
 			// 
-			// listBox1
+			// richTextBox1
 			// 
-			this->listBox1->FormattingEnabled = true;
-			this->listBox1->Location = System::Drawing::Point(153, 90);
-			this->listBox1->Name = L"listBox1";
-			this->listBox1->Size = System::Drawing::Size(422, 251);
-			this->listBox1->TabIndex = 2;
-			this->listBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &FinishQuiz::listBox1_SelectedIndexChanged);
-			this->listBox1->Text = reviewScore;
+			this->richTextBox1->Location = System::Drawing::Point(109, 79);
+			this->richTextBox1->Name = L"richTextBox1";
+			this->richTextBox1->Size = System::Drawing::Size(476, 265);
+			this->richTextBox1->TabIndex = 2;
+			this->richTextBox1->Text = reviewScore;
 			// 
 			// FinishQuiz
 			// 
@@ -106,7 +103,7 @@ namespace QuizClient {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(664, 414);
-			this->Controls->Add(this->listBox1);
+			this->Controls->Add(this->richTextBox1);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Name = L"FinishQuiz";

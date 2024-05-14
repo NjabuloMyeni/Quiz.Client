@@ -10,9 +10,9 @@ class Homepage {
 
 public:
 	Homepage(UserAuthRequest *userauthrequest, bool *authMissionStatus) {
-		UserProfileAPI userAPI;
+		UserProfileAPI^ userAPI = gcnew UserProfileAPI();
 		DataLoader loader(&userAPI);
-		if (userAPI.userAuthMission(*userauthrequest)) {
+		if (userAPI->userAuthMission(*userauthrequest)) {
 			*authMissionStatus = true;
 		}
 	}

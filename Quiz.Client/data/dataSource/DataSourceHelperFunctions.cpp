@@ -1,9 +1,9 @@
 #include <string>
 #include <vector>
 #include <cctype>
-#include "../../Models/Models.cpp"
+#include "../../Models/HelperModel.cpp"
 #pragma once
-using namespace Models;
+using namespace HelperModels;
 using namespace std;
 
 namespace HelperFuctions {
@@ -11,8 +11,9 @@ namespace HelperFuctions {
 	{
 	public:	
 		static vector<string> splitString(string &line, const char &delimeter) {
-			vector<string>splitedString;
-			string temp;
+			vector<string> splitedString;
+			splitedString.reserve(4);
+			string temp = "";
 			for (int i = 0; i < line.length(); i++) {
 				if ( line[i] == delimeter ) {
 					splitedString.push_back(temp);
@@ -26,18 +27,19 @@ namespace HelperFuctions {
 			return splitedString;
 		}
 
-		static void contentLoadLoader(QAModel &rowContent, vector<string> disectedrow) {
+		static void contentLoadLoader(QAModel^ &rowContent, vector<string> disectedrow) {
 			
-			rowContent.Question = trim(disectedrow[0]);
-			rowContent.CodeQuestion = trim(disectedrow[1]);
-			rowContent.Options = Helpers::splitString(trim(disectedrow[2]), ';');
+			rowContent->setQuestion(trim(disectedrow[0]));
+			rowContent->setCodeQuestion(trim(disectedrow[1]));
+			rowContent->setOptions(Helpers::splitString(trim(disectedrow[2]), ';'));
 		}
 
-		static void contentLoadLoader(UserProfileModel &rowContent, vector<string> disectedrow) {
-			rowContent.Name = trim(disectedrow[0]);
-			rowContent.Surname = trim(disectedrow[1]);
-			rowContent.Passward= trim(disectedrow[2]);
-			rowContent.EmailAddress = trim(disectedrow[3]);
+		static void contentLoadLoader(UserProfileModel^ &rowContent, vector<string> disectedrow) {
+
+			rowContent->setName(trim(disectedrow[0]));
+			rowContent->setSurname(trim(disectedrow[1]));
+			rowContent->setPassward(trim(disectedrow[2]));
+			rowContent->setEmailAddress(trim(disectedrow[3]));
 		}
 
 		static string trim(const string& str) {

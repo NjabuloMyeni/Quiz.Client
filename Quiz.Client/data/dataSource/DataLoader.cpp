@@ -2,26 +2,25 @@
 #include <vector>;
 #include <fstream>;
 #include <string>;
-#include <vector>;
-#include "..\..\Models\Models.cpp";
+#include <cliext/vector>;
 #include "QAAPI.cpp";
 #include "DataSourceHelperFunctions.cpp";
 #include "UserProfileAPI.cpp";
+#include "../../Models/HelperModel.cpp"
 #pragma once
 
 using namespace std;
 using namespace HelperFuctions;
-using namespace Models;
+using namespace HelperModels;
 
-class DataLoader {
-
+ref class DataLoader {
 
 private:
 
     template<typename Model>
-    vector<Model> dataContentReader(string filename, string questionreq = "") {
+    cliext::vector<Model^> dataContentReader(string filename, string questionreq) {
 
-        vector<Model> contentLoad;
+        cliext::vector<Model^> contentLoad = gcnew cliext::vector<Model^>();
         string line;
         ifstream fileReader;
 
@@ -39,7 +38,7 @@ private:
 
         while (getline(fileReader, line, delim)) {
 
-            Model rowContent;
+            Model^ rowContent = gcnew Model();
             vector<string> disectedrow = Helpers::splitString(line, '~');
             Helpers::contentLoadLoader(rowContent, disectedrow);
             contentLoad.push_back(rowContent);
@@ -49,34 +48,35 @@ private:
     }
 
 
-    QAAPI populateQuestionBanks() {
+    QAAPI^ populateQuestionBanks() {
         string path = "././data/dataFactory/";
         string fileName;
-        QAAPI qaAPI;
+        QAAPI^ qaAPI = gcnew QAAPI();
 
         fileName = "QABankOne.txt";
-        qaAPI.setQuestionBankOne(dataContentReader<QAModel>(path + fileName, "questionreq"));
+        qaAPI->setQuestionBankOne(dataContentReader<QAModel>(path + fileName, "questionreq"));
         fileName = "QABankTwo.txt";
-        qaAPI.setQuestionBankTwo(dataContentReader<QAModel>(path + fileName, "questionreq"));
+        qaAPI->setQuestionBankTwo(dataContentReader<QAModel>(path + fileName, "questionreq"));
         fileName = "QABankThree.txt";
-        qaAPI.setQuestionBankThree(dataContentReader<QAModel>(path + fileName, "questionreq"));
+        qaAPI->setQuestionBankThree(dataContentReader<QAModel>(path + fileName, "questionreq"));
         return qaAPI;
     }
 
-    UserProfileAPI UserProfileReadIn() {
+    UserProfileAPI^ UserProfileReadIn() {
 
         string path = "././data/dataFactory/";
         string fileName = "UserProfiles.txt";
-        UserProfileAPI userAPI;
-        userAPI.setUserProfileData(dataContentReader<UserProfileModel>(path + fileName));
+        UserProfileAPI^ userAPI = gcnew UserProfileAPI();
+
+        userAPI->setUserProfileData(dataContentReader<UserProfileModel>(path + fileName,""));
         return userAPI;
     }
 public:
-    DataLoader(UserProfileAPI* APIPointer) {
+    DataLoader(UserProfileAPI^ *APIPointer) {
         *APIPointer = UserProfileReadIn();
     }
 
-    DataLoader(QAAPI* APIPointer) {
+    DataLoader(QAAPI^ *APIPointer) {
         *APIPointer = populateQuestionBanks();
     }
 

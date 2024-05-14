@@ -11,6 +11,7 @@ namespace QuizClient {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace HelperModels;
 
 	/// <summary>
 	/// Summary for Grading
@@ -21,6 +22,7 @@ namespace QuizClient {
 		Grading(cliext::vector<DisplaySessionQuestionModel^>^ displaysessionquestionmodel,String^ score)
 		{
 			this->displaysessionquestionmodelpointer = displaysessionquestionmodel;
+			this->score += score;
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -44,7 +46,8 @@ namespace QuizClient {
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ textBox1;
-		   cliext::vector<DisplaySessionQuestionModel^>^ displaysessionquestionmodelpointer;
+	private:cliext::vector<DisplaySessionQuestionModel^>^ displaysessionquestionmodelpointer;
+	private:String^ score = gcnew String("");
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -119,6 +122,7 @@ namespace QuizClient {
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(100, 20);
 			this->textBox1->TabIndex = 4;
+			this->textBox1->Text = score;
 			// 
 			// Grading
 			// 
@@ -141,14 +145,45 @@ namespace QuizClient {
 #pragma endregion
 		private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 
-			String^ review;
+			String^ review = gcnew String("");
 			for (int i = 0; i < this->displaysessionquestionmodelpointer->size(); i++) {
 
-				if ( !this->displaysessionquestionmodelpointer->at(i)->getUserAnswer()->Empty ) {
+				if ( this->displaysessionquestionmodelpointer->at(i)->getUserAnswer() != "") {
+					review += msclr::interop::marshal_as<String^>("Question " + to_string((i + 1)) + "\n");
+					review += this->displaysessionquestionmodelpointer->at(i)->getQuestion() + "\n";
+					review += this->displaysessionquestionmodelpointer->at(i)->getCodeQuestion() + "\n";
+					for (int j = 0; j < this->displaysessionquestionmodelpointer->at(i)->getOptions().size(); j++) {
+						
+						String^ s = gcnew String("");
+						if (j == 0) {
+							if (displaysessionquestionmodelpointer->at(i)->getOptions().at(j)->Contains("Correct")) {
+								s += "[A]";
+							}
+							else s += "A"; 
+						}
+						else if (j == 1) {
+							if (displaysessionquestionmodelpointer->at(i)->getOptions().at(j)->Contains("Correct")) {
+								s += "[B]";
+							}
+							else s += "B";
 
-					review->Concat(this->displaysessionquestionmodelpointer->at(i)->getQuestion() + "\n");
-					review->Concat(this->displaysessionquestionmodelpointer->at(i)->getCodeQuestion() + "\n");
-					review->Concat(this->displaysessionquestionmodelpointer->at(i)->getOptions().ToString() + "\n");
+						}
+						else if (j == 2) {
+							if (displaysessionquestionmodelpointer->at(i)->getOptions().at(j)->Contains("Correct")) {
+								s += "[C]";
+							}
+							else s += "C";
+						}
+						else {
+							if (displaysessionquestionmodelpointer->at(i)->getOptions().at(j)->Contains("Correct")) {
+								s += "[D]";
+							}
+							else s += "D";
+						}
+						review += (s+" " + displaysessionquestionmodelpointer->at(i)->getOptions().at(j))+"\n";
+						
+					}
+					review += "------------------------------------";
 				}
 			}
 			FinishQuiz^ finishQuiz = gcnew FinishQuiz(review);

@@ -10,35 +10,39 @@
 using namespace QuizClient;
 using namespace Models;
 using namespace System;
+using namespace HelperModels;
 
-class QuizInprogress {
+ref class QuizInprogress {
 private:
 
 public:
     QuizInprogress(cliext::vector<DisplaySessionQuestionModel^>^ displaysessionquestions) {
 
-        QAAPI qaAPI;
+        QAAPI^ qaAPI;
         DataLoader loader(&qaAPI);
-        CompileSessionQuestions compilesessionquestions(&qaAPI);
-        convertQAModelToSessionQuestionModel(&compilesessionquestions.getSessionQuestions(), displaysessionquestions);
+        CompileSessionQuestions compilesessionquestions(qaAPI);
+        convertQAModelToSessionQuestionModel(compilesessionquestions.getSessionQuestions(), displaysessionquestions);
     }
 
-    void convertQAModelToSessionQuestionModel(vector<QAModel> *qasessionquestion, cliext::vector<DisplaySessionQuestionModel^>^ displaysessionquestions) {
+    void convertQAModelToSessionQuestionModel(cliext::vector<QAModel^> qasessionquestion, cliext::vector<DisplaySessionQuestionModel^>^ displaysessionquestions) {
         
-        for (int i = 0; i < qasessionquestion->size(); i++) {
+        for (int i = 0; i < qasessionquestion.size(); i++) {
+            if (qasessionquestion.at(i) != nullptr) {
 
-            DisplaySessionQuestionModel^ sessionquestionmodel = gcnew DisplaySessionQuestionModel();
-            sessionquestionmodel->setQuestion(msclr::interop::marshal_as<String^>(qasessionquestion->at(i).Question));
-            sessionquestionmodel->setCodeQuestion(msclr::interop::marshal_as<String^>(qasessionquestion->at(i).CodeQuestion));
-            sessionquestionmodel->setQuestionLevel(msclr::interop::marshal_as<String^>(qasessionquestion->at(i).QuestionLevel));
+                DisplaySessionQuestionModel^ sessionquestionmodel = gcnew DisplaySessionQuestionModel();
+                sessionquestionmodel->setQuestion(qasessionquestion.at(i)->getQuestion());
+                sessionquestionmodel->setCodeQuestion(qasessionquestion.at(i)->getCodeQuestion());
+                sessionquestionmodel->setQuestionLevel(qasessionquestion.at(i)->getQuestionLevel());
 
-            cliext::vector<String^> Options;
-            for (int j = 0; j < qasessionquestion->at(i).Options.size(); j++) {
-                Options.push_back(msclr::interop::marshal_as<String^>(qasessionquestion->at(i).Options.at(j)));
+                cliext::vector<String^> Options;
+                for (int j = 0; j < qasessionquestion.at(i)->getOptions().size(); j++) {
+                    Options.push_back(qasessionquestion.at(i)->getOptions().at(j));
+                }
+
+                sessionquestionmodel->setUserAnswer("");
+                sessionquestionmodel->setOptions(Options);
+                displaysessionquestions->push_back(sessionquestionmodel);
             }
-            sessionquestionmodel->setUserAnswer("");
-            sessionquestionmodel->setOptions(Options);
-            displaysessionquestions->push_back(sessionquestionmodel);
         }
     }
 };
