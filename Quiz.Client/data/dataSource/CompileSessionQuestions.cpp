@@ -47,7 +47,7 @@ public:
 			QAModel^ qaModel = levelQuestions.at(index);
 			qaModel->setQuestionLevel(level);
 			sessionQuestions.push_back(qaModel);
-			levelQuestions.erase(levelQuestions.begin());
+			levelQuestions.erase(levelQuestions.begin() + index);
 			size--;
 		}
 	}

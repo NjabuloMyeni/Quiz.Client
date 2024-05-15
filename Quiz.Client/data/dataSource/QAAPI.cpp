@@ -25,12 +25,12 @@ public:
         }
     }
     void setQuestionBankTwo(cliext::vector<QAModel^> questionBankTwo) {
-        for (int i = 0; i < questionBankOne.size(); i++) {
+        for (int i = 0; i < questionBankTwo.size(); i++) {
             this->questionBankTwo.push_back(questionBankTwo.at(i));
         }
     }
     void setQuestionBankThree(cliext::vector<QAModel^> questionBankThree) {
-        for (int i = 0; i < questionBankOne.size(); i++) {
+        for (int i = 0; i < questionBankThree.size(); i++) {
             this->questionBankThree.push_back(questionBankThree.at(i));
         }
     }

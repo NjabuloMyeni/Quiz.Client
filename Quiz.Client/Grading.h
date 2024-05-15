@@ -149,7 +149,7 @@ namespace QuizClient {
 			for (int i = 0; i < this->displaysessionquestionmodelpointer->size(); i++) {
 
 				if ( this->displaysessionquestionmodelpointer->at(i)->getUserAnswer() != "") {
-					review += msclr::interop::marshal_as<String^>("Question " + to_string((i + 1)) + "\n");
+					review += msclr::interop::marshal_as<String^>("-------------------Question " + to_string((i + 1)) + "-------------------\n");
 					review += this->displaysessionquestionmodelpointer->at(i)->getQuestion() + "\n";
 					review += this->displaysessionquestionmodelpointer->at(i)->getCodeQuestion() + "\n";
 					for (int j = 0; j < this->displaysessionquestionmodelpointer->at(i)->getOptions().size(); j++) {
@@ -157,33 +157,31 @@ namespace QuizClient {
 						String^ s = gcnew String("");
 						if (j == 0) {
 							if (displaysessionquestionmodelpointer->at(i)->getOptions().at(j)->Contains("Correct")) {
-								s += "[A]";
+								review += "[A]" + " " + displaysessionquestionmodelpointer->at(i)->getOptions().at(j)->Substring(7) + "\n";
 							}
-							else s += "A"; 
+							else review += "A" + " " + displaysessionquestionmodelpointer->at(i)->getOptions().at(j) + "\n";
 						}
 						else if (j == 1) {
 							if (displaysessionquestionmodelpointer->at(i)->getOptions().at(j)->Contains("Correct")) {
-								s += "[B]";
+								review += "[B]" + " " + displaysessionquestionmodelpointer->at(i)->getOptions().at(j)->Substring(7) + "\n";
 							}
-							else s += "B";
+							else review += "B" + " " + displaysessionquestionmodelpointer->at(i)->getOptions().at(j)+ "\n";
 
 						}
 						else if (j == 2) {
 							if (displaysessionquestionmodelpointer->at(i)->getOptions().at(j)->Contains("Correct")) {
-								s += "[C]";
+								review += "[C]" + " " + displaysessionquestionmodelpointer->at(i)->getOptions().at(j)->Substring(7) + "\n";
 							}
-							else s += "C";
+							else review += "C" + " " + displaysessionquestionmodelpointer->at(i)->getOptions().at(j) + "\n";
 						}
 						else {
 							if (displaysessionquestionmodelpointer->at(i)->getOptions().at(j)->Contains("Correct")) {
-								s += "[D]";
+								review += "[D]" + " " + displaysessionquestionmodelpointer->at(i)->getOptions().at(j)->Substring(7) + "\n";
 							}
-							else s += "D";
+							else review += "D" + " " + displaysessionquestionmodelpointer->at(i)->getOptions().at(j) + "\n";
 						}
-						review += (s+" " + displaysessionquestionmodelpointer->at(i)->getOptions().at(j))+"\n";
-						
 					}
-					review += "------------------------------------";
+					review += "----------------------------------------------------------------------\n";
 				}
 			}
 			FinishQuiz^ finishQuiz = gcnew FinishQuiz(review);
