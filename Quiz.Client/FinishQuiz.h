@@ -1,5 +1,5 @@
 #pragma once
-
+#include <stdlib.h>
 namespace QuizClient {
 
 	using namespace System;
@@ -17,7 +17,7 @@ namespace QuizClient {
 	public:
 		FinishQuiz(String^ review)
 		{
-			this->reviewScore +=  review;
+			this->reviewScore += review;
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -87,6 +87,7 @@ namespace QuizClient {
 			this->button2->TabIndex = 1;
 			this->button2->Text = L"Finish";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &FinishQuiz::button2_Click);
 			// 
 			// richTextBox1
 			// 
@@ -114,7 +115,8 @@ namespace QuizClient {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void listBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		exit(3);
 	}
 };
 }

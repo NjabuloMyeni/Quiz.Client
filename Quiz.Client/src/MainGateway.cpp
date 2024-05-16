@@ -1,4 +1,3 @@
-#include "../data/dataSource/DataLoader.cpp"
 #include "../HomePage.h"
 #pragma once
 
@@ -11,7 +10,6 @@ int main()
 	Application::SetCompatibleTextRenderingDefault(false);
 	HomePage^ homepage = gcnew HomePage();
 	Application::Run(homepage);
-	//DataLoader loader(userAPI);
 
 	return 0;
 }
